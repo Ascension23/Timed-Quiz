@@ -6,6 +6,7 @@ let randomQuestion
 var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
 var nextButton = document.getElementById('next-btn')
+let userScore = 0
 
 
 // Function to start the quiz
