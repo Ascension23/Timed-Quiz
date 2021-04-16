@@ -1,6 +1,5 @@
 var startButton = document.getElementById('start-btn')
-// var question = document.getElementById('question')
-var choices = document.getElementById('answer-btn')
+// var choices = document.getElementById('answer-btn')
 var questionContainer = document.getElementById('questionContainer')
 let currentQuestion = 0
 let randomQuestion
@@ -53,8 +52,7 @@ function selectAnswer(e) {
         setStatusClass(button, button.dataset.correct)
     })
     if (randomQuestion.length > currentQuestion +1) {
-        startButton.innerText = 'Restart'
-        startButton.classList.remove('hide')
+        nextButton.classList.remove('hide')
     } else {
         startButton.innerText = 'Restart'
         startButton.classList.remove('hide')
@@ -85,6 +83,10 @@ startButton.addEventListener('click', function(event){
     questionContainer.style.display='block'
     startQuiz();
 });
+nextButton.addEventListener('click', () => {
+    currentQuestion++
+    nextQuestion()
+})
 
 const questions = [
     {   question: "What is an object?",
