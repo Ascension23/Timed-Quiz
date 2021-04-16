@@ -6,9 +6,10 @@ let randomQuestion
 var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
 var nextButton = document.getElementById('next-btn')
-let userScore = 0
-let secondsLeft = 100
-var timeEl=document.getElementById(".timerSec")
+let secondsLeft = 60
+var timeEl = document.querySelector(".timerSec")
+var userScore = document.querySelector(".userScore")
+
 
 
 
@@ -35,6 +36,7 @@ function showQuestion(question) {
         button.classList.add('btn')
         if (answer.correct) {
             button.dataset.correct = answer.correct
+            userScore++
         }
         button.addEventListener('click', selectAnswer)
         answerButtonsElement.appendChild(button)
@@ -61,6 +63,7 @@ function selectAnswer(e) {
     } else {
         startButton.innerText = 'Restart'
         startButton.classList.remove('hide')
+        // clearInterval(timerInterval);
     }
 }
 
@@ -84,11 +87,14 @@ function setTime() {
         timeEl.textContent = secondsLeft;
         if(secondsLeft === 0) {
             clearInterval(timerInterval);
-            sendMessage();
+            gameOver();
         }
     }, 1000);
 }
 
+function gameOver() {
+
+}
 
 startButton.addEventListener('click', function(event){
     event.preventDefault();
