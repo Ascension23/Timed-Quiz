@@ -1,4 +1,4 @@
-var startBtn = document.getElementById('start-btn')
+var startButton = document.getElementById('start-btn')
 // var question = document.getElementById('question')
 var choices = document.getElementById('answer-btn')
 var questionContainer = document.getElementById('questionContainer')
@@ -6,21 +6,23 @@ let currentQuestion = 0
 let randomQuestion
 var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
-
+var nextButton = document.getElementById('next-btn')
 
 
 // Function to start the quiz
-function startQuiz() {
+function startQuiz() 
+{
     startButton.classList.add('hide')
     randomQuestion = questions.sort(() => Math.random() - .5)
     questionContainer.classList.remove('hide')
     nextQuestion()   
 }
 // Moving to the next question
-function nextQuestion() {
+function nextQuestion() 
+{
     reset()
-  showQuestion(shuffledQuestions[currentQuestion])
-
+  showQuestion(randomQuestion[currentQuestion])
+}
 function showQuestion(question) {
     questionElement.innerText = question.question
     question.answers.forEach(answer => {
@@ -35,7 +37,7 @@ function showQuestion(question) {
     })
 }
 
-function reset () {
+function reset() {
     clearStatusClass(document.body)
     nextButton.classList.add('hide')
     while (answerButtonsElement.firstChild) {
@@ -51,6 +53,9 @@ function selectAnswer(e) {
         setStatusClass(button, button.dataset.correct)
     })
     if (randomQuestion.length > currentQuestion +1) {
+        startButton.innerText = 'Restart'
+        startButton.classList.remove('hide')
+    } else {
         startButton.innerText = 'Restart'
         startButton.classList.remove('hide')
     }
@@ -73,7 +78,7 @@ function clearStatusClass(element) {
 
 
 //
-startBtn.addEventListener('click', function(event){
+startButton.addEventListener('click', function(event){
     event.preventDefault();
     var frontPage = document.getElementById('frontPage')
     frontPage.style.display='none'
@@ -81,9 +86,8 @@ startBtn.addEventListener('click', function(event){
     startQuiz();
 });
 
-const questions =[
-    { 
-        question: "What is an object?",
+const questions = [
+    {   question: "What is an object?",
         answers: [
             { text: 'a collection of vases', correct: false},
             { text: 'a band name', correct: false},
@@ -92,42 +96,38 @@ const questions =[
     ]
     },
 
-    {
-        question: "What does JS stand for?",
+    {   question: "What does JS stand for?",
         answers: [
-            { text: "JavaScript", correct: true} 
-            { text: "Just Saying", correct: false}
-            { text: "Joe Schilling", correct: false}
+            { text: "JavaScript", correct: true}, 
+            { text: "Just Saying", correct: false},
+            { text: "Joe Schilling", correct: false},
             { text: "Java Show", correct: false}
     ],
     },
 
-    {
-        question: "What does CSS stand for?",
+    {   question: "What does CSS stand for?",
         answers: [
-            { text: "Coded Script Sheet", correct: false}
-            { text: "Cascading Style Sheet", correct: true}
-            { text: "Concurrent Script Styling", correct: false}
+            { text: "Coded Script Sheet", correct: false},
+            { text: "Cascading Style Sheet", correct: true},
+            { text: "Concurrent Script Styling", correct: false},
             { text: "None of the above", correct: false}
     ],
     },
 
-    {
-        question: "Which of these is NOT a programming language?",
+    {   question: "Which of these is NOT a programming language?",
         answers: [
-            { text: "Python", correct: false}
-            { text: "Ruby", correct: false}
-            { text: "Java", correct: false}
+            { text: "Python", correct: false},
+            { text: "Ruby", correct: false},
+            { text: "Java", correct: false},
             { text: "Asus", correct: true}
     ],
     },
 
-    {
-        question: "Inside which HTML element do you put the JavaScript?",
+    {   question: "Inside which HTML element do you put the JavaScript?",
         answers: [
-            { text: "<script>", correct: true}
-            { text: "javascript", correct: false}
-            { text: "<js>", correct: false}
+            { text: "<script>", correct: true},
+            { text: "javascript", correct: false},
+            { text: "<js>", correct: false},
             { text: "<scripting>", correct: false}
     ],
     },
