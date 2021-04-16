@@ -7,6 +7,9 @@ var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
 var nextButton = document.getElementById('next-btn')
 let userScore = 0
+let secondsLeft = 100
+var timeEl=document.getElementById(".timerSec")
+
 
 
 // Function to start the quiz
@@ -15,7 +18,8 @@ function startQuiz()
     startButton.classList.add('hide')
     randomQuestion = questions.sort(() => Math.random() - .5)
     questionContainer.classList.remove('hide')
-    nextQuestion()   
+    nextQuestion()
+    setTime()   
 }
 // Moving to the next question
 function nextQuestion() 
@@ -74,9 +78,18 @@ function clearStatusClass(element) {
     element.classList.remove('wrong')
 }
 
+function setTime() {
+    var timerInterval = setInterval(function() {
+        secondsLeft--;
+        timeEl.textContent = secondsLeft;
+        if(secondsLeft === 0) {
+            clearInterval(timerInterval);
+            sendMessage();
+        }
+    }, 1000);
+}
 
 
-//
 startButton.addEventListener('click', function(event){
     event.preventDefault();
     var frontPage = document.getElementById('frontPage')
