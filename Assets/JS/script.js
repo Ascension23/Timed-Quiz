@@ -1,5 +1,4 @@
 var startButton = document.getElementById('start-btn')
-// var choices = document.getElementById('answer-btn')
 var questionContainer = document.getElementById('questionContainer')
 let currentQuestion = 0
 let randomQuestion
@@ -28,6 +27,8 @@ function nextQuestion()
     reset()
   showQuestion(randomQuestion[currentQuestion])
 }
+
+//Adding questions to the question box
 function showQuestion(question) {
     questionElement.innerText = question.question
     question.answers.forEach(answer => {
@@ -36,7 +37,7 @@ function showQuestion(question) {
         button.classList.add('btn')
         if (answer.correct) {
             button.dataset.correct = answer.correct
-            userScore++
+            // userScore.querySelectorAll('userScore')
         }
         button.addEventListener('click', selectAnswer)
         answerButtonsElement.appendChild(button)
@@ -63,7 +64,6 @@ function selectAnswer(e) {
     } else {
         startButton.innerText = 'Restart'
         startButton.classList.remove('hide')
-        // clearInterval(timerInterval);
     }
 }
 
@@ -148,7 +148,7 @@ const questions = [
     {   question: "Inside which HTML element do you put the JavaScript?",
         answers: [
             { text: "<script>", correct: true},
-            { text: "javascript", correct: false},
+            { text: "<javascript>", correct: false},
             { text: "<js>", correct: false},
             { text: "<scripting>", correct: false}
     ],
