@@ -8,6 +8,7 @@ var nextButton = document.getElementById('next-btn')
 let secondsLeft = 60
 var timeEl = document.querySelector(".timerSec")
 var userScore = document.querySelector(".userScore")
+var timerInterval;
 
 
 
@@ -64,6 +65,7 @@ function selectAnswer(e) {
     } else {
         startButton.innerText = 'Restart'
         startButton.classList.remove('hide')
+        clearInterval(timerInterval);
     }
 }
 
@@ -82,7 +84,7 @@ function clearStatusClass(element) {
 }
 
 function setTime() {
-    var timerInterval = setInterval(function() {
+        timerInterval = setInterval(function() {
         secondsLeft--;
         timeEl.textContent = secondsLeft;
         if(secondsLeft === 0) {
