@@ -5,10 +5,14 @@ let randomQuestion
 var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
 var nextButton = document.getElementById('next-btn')
-let secondsLeft = 60
+let secondsLeft = 30
 var timeEl = document.querySelector(".timerSec")
-var userScore = document.querySelector(".userScore")
+var userScoreEl = document.querySelector(".userScore")
 var timerInterval;
+let userScore = 0
+var finalScoreElement = document.getElementById('finalScore')
+var submitButtonElement = document.getElementById('submit')
+var inputBoxElement = document.getElementById('userNameInput')
 
 
 
@@ -20,8 +24,10 @@ function startQuiz()
     randomQuestion = questions.sort(() => Math.random() - .5)
     questionContainer.classList.remove('hide')
     nextQuestion()
-    setTime()   
+    setTime()
+    userScoreEl.textContent = 0  
 }
+
 // Moving to the next question
 function nextQuestion() 
 {
@@ -38,13 +44,13 @@ function showQuestion(question) {
         button.classList.add('btn')
         if (answer.correct) {
             button.dataset.correct = answer.correct
-            // userScore.querySelectorAll('userScore')
         }
         button.addEventListener('click', selectAnswer)
         answerButtonsElement.appendChild(button)
     })
 }
 
+//Resetting the answer boxes after each question
 function reset() {
     clearStatusClass(document.body)
     nextButton.classList.add('hide')
@@ -53,6 +59,7 @@ function reset() {
     }
 }
 
+//Setting the answers and bringing up the end game options
 function selectAnswer(e) {
     const selectedButton = e.target
     const correct = selectedButton.dataset.correct
@@ -66,23 +73,34 @@ function selectAnswer(e) {
         startButton.innerText = 'Restart'
         startButton.classList.remove('hide')
         clearInterval(timerInterval);
+        questionElement.classList.add('hide')
+        answerButtonsElement.classList.add('hide')
+        submitButtonElement.classList.remove('hide')
+        inputBoxElement.classList.remove('hide')
+        userNameInput.style.display='block'
+        finalScoreElement.style.display='block'
     }
 }
 
+//Setting the button and background color according to correct or wrong
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
         element.classList.add('correct')
+        userScore++;
+        userScoreEl.textContent = userScore;
     } else {
         element.classList.add('wrong')
     }
 }
 
+//Clearing the wrong or correct function to reset buttons and background
 function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')
 }
 
+//Starting the timer for the game
 function setTime() {
         timerInterval = setInterval(function() {
         secondsLeft--;
@@ -94,22 +112,31 @@ function setTime() {
     }, 1000);
 }
 
-function gameOver() {
 
+function gameOver() {
+    var frontPage = document.getElementById('frontPage')
+    frontPage.style.display='block'
+    questionContainer.style.display='none'
+    startButton.classList.remove('hide')
 }
 
+//Removing the Front page when start is clicked and bringing up questions and answers
 startButton.addEventListener('click', function(event){
     event.preventDefault();
     var frontPage = document.getElementById('frontPage')
     frontPage.style.display='none'
     questionContainer.style.display='block'
     startQuiz();
+    clearInterval(timerInterval);
+    secondsLeft = 30
+    setTime();
 });
 nextButton.addEventListener('click', () => {
     currentQuestion++
     nextQuestion()
 })
 
+//List of questions and answers
 const questions = [
     {   question: "What is an object?",
         answers: [
