@@ -1,10 +1,14 @@
-# Refactor
-Horiseon website discussing Search Engine Optimization, Online Reputation Management and Social Media Marketing
-### Webpage
-https://ascension23.github.io/Refactor/
+# Timed Coding Quiz
 
-### Repository
-https://github.com/Ascension23/Refactor
+This is my Timed Coding Quiz app built with HTML, JavaScript and CSS. The user has 30 seconds to answer all the questions within the time limit.
 
-### Screenshot
-![01-html-css-git-homework-demo](https://user-images.githubusercontent.com/77472152/112557397-9bde3880-8d89-11eb-8cd7-3b59e05d7727.png)
+## Webpage
+
+https://ascension23.github.io/Timed-Quiz
+
+
+## Repository
+
+https://github.com/Ascension23/Timed-Quiz
+
+## Screenshot
