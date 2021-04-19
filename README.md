@@ -12,3 +12,4 @@ https://ascension23.github.io/Timed-Quiz
 https://github.com/Ascension23/Timed-Quiz
 
 ## Screenshot
+![Timed Coding Quiz html](https://user-images.githubusercontent.com/77472152/115176367-d59d1900-a081-11eb-90a6-65bdf42fb74b.png)
