@@ -25,7 +25,13 @@ function startQuiz()
     questionContainer.classList.remove('hide')
     nextQuestion()
     setTime()
-    userScoreEl.textContent = 0  
+    userScoreEl.textContent = 0
+    questionElement.classList.remove('hide')
+    answerButtonsElement.classList.remove('hide')
+    submitButtonElement.classList.add('hide')
+    inputBoxElement.classList.add('hide')
+    userNameInput.style.display='none'
+    finalScoreElement.style.display='none'
 }
 
 // Moving to the next question
